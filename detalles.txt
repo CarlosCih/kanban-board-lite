@@ -1,0 +1,42 @@
+Documentación del Proyecto: Tablero de Kanban SimpleDocumentación del Proyecto: Tablero de Kanban Simple
+1. Tecnologías Utilizadas
+    HTML, CSS y JavaScript: Estructura básica de la aplicación, estilos personalizados y lógica de interacción.
+    PHP: (Opcional) Para implementar funcionalidades del lado del servidor si es necesario en el futuro.
+    Bootstrap: Biblioteca de CSS para estilos y componentes predefinidos, facilitando el diseño responsive y unificado.
+    LocalStorage: Almacenamiento de datos en el navegador para guardar las tareas del usuario de manera local.
+    Workbox: Para configurar el Service Worker y proporcionar funcionalidad offline en una futura versión PWA.
+    Notificaciones Push: (Opcional) Para recordatorios o actualizaciones, usando Firebase Cloud Messaging en la versión PWA.
+2. Estilos
+    Bootstrap: Para el diseño visual de columnas, tarjetas de tareas, modales y botones.
+    CSS Personalizado: Para ajustes específicos de los elementos y personalización adicional sobre el estilo de Bootstrap.
+3. Estructura del Proyecto
+4. Vistas de la Aplicación
+    4.1. Pantalla de Inicio (Lista de Tableros)
+        Objetivo: Mostrar todos los tableros del usuario.
+        Elementos:
+            Encabezado: "Mis Tableros".
+            Botón “+ Nuevo Tablero”: Permite crear un nuevo tablero.
+            Lista de Tableros: Muestra cada tablero con nombre, fecha de creación y número de tareas (opcional).
+            Vista Vacía: Si el usuario no tiene tableros, muestra un mensaje como “No tienes tableros aún” y un botón “Crear tu primer Kanban”.
+    4.2. Vista de Tablero Kanban
+        Objetivo: Visualizar y gestionar las tareas de un tablero específico.
+            Elementos:
+            Encabezado: Nombre del tablero seleccionado.
+            Botón “+ Nueva Tarea”: Abre un formulario para añadir una nueva tarea.
+            Columnas de Tareas:
+            Por hacer: Tareas pendientes.
+            En progreso: Tareas en proceso.
+            Completado: Tareas finalizadas.
+            Tarjetas de Tarea: Cada tarea será una tarjeta dentro de las columnas, con título, descripción y botones de eliminar/editar.
+    4.3. Modal para Nueva Tarea
+        Objetivo: Capturar datos de una nueva tarea.
+            Elementos:
+            Formulario: Campos para título y descripción.
+            Botón “Guardar”: Añade la nueva tarea a la columna “Por hacer”.
+5. Funcionalidades Principales
+    Agregar Tarea: Permite crear una nueva tarea y colocarla en la columna "Por hacer".
+    Mover Tarea: Opción para mover las tareas entre columnas (se puede implementar drag-and-drop o con botones).
+    Eliminar Tarea: Remueve una tarea específica.
+    Guardar Estado: Usa LocalStorage para guardar el estado de los tableros y tareas, permitiendo la persistencia de datos.
+    Funcionalidad Offline (Con Workbox): Cachea los archivos esenciales y permite que la aplicación funcione sin conexión.
+    Notificaciones Push (Opcional): Recordatorios o alertas sobre tareas importantes.
