@@ -1,0 +1,142 @@
+/* Fondo degradado claro para el cuerpo */
+body {
+    background: linear-gradient(to right, #f8f9fa, #ffffff);
+}
+
+/* Navbar personalizada */
+.navbar-custom {
+    background: #FF7F50;
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Estilos de enlaces en la navbar */
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: #ffffff; /* Color del texto de los enlaces y el logo */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .nav-link:hover {
+    color: #333333; /* Color al pasar el mouse (gris oscuro) */
+}
+
+/* Botón en la navbar */
+.navbar-custom .btn-custom {
+    background-color: #333333;
+    color: #f0c36f;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar-custom .btn-custom:hover {
+    background-color: #555555;
+    transform: scale(1.05); /* Ligeramente más grande al hacer hover */
+    color: #FFA500;
+}
+
+.navbar-custom .btn-custom:active {
+    background-color: #444444;
+    transform: scale(1); /* Retorna a su tamaño original */
+}
+
+/* Navbar al hacer scroll */
+.navbar-scroll {
+    background-color: #cc8400; /* Tono más oscuro */
+    transition: background-color 0.3s ease;
+}
+
+/* Botón general con efecto de fondo degradado animado */
+.btn-custom {
+    background: linear-gradient(90deg, #333333, #555555);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+    color: #FFA500;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-custom:hover {
+    background-color: #555555;
+    transform: scale(1.05); /* Ligeramente más grande al hacer hover */
+}
+
+.btn-custom:active {
+    background-color: #444444;
+    transform: scale(1); /* Retorna a su tamaño original */
+}
+
+/* Animación del fondo degradado */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Bordes redondeados en tarjetas y modales */
+.card,
+.modal-content {
+    border-radius: 8px;
+}
+
+/* Efecto de animación de entrada para el modal */
+.modal.fade .modal-dialog {
+    transform: translateY(-100px);
+    transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+    transform: translateY(0);
+}
+
+/* Estilo de "Glassmorphism" para el modal */
+.modal-content {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.9)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 768px) {
+    
+    .navbar-brand {
+        font-size: 1.2em; /* Reducir el tamaño del logo o título */
+    }
+    .navbar {
+        padding: 10px; /* Reducir el padding de la navbar */
+    }
+    .navbar-collapse {
+        text-align: center; /* Centrar los elementos dentro del menú desplegable */
+    }
+    .navbar-nav {
+        flex-direction: column; /* Colocar los enlaces en columna */
+    }
+    .navbar-nav .nav-item {
+        margin: 5px 0; /* Añadir espaciado entre los enlaces */
+    }
+    .btn-custom {
+        padding: 5px 10px; /* Reducir el tamaño del botón en móviles */
+        font-size: 0.9em;  /* Tamaño de fuente más pequeño */
+        width: 50%; /* Hacer el botón de ancho completo en móviles */
+        margin-top: 10px;
+    }
+    
+    #emptyState {
+        display: none; /* Ocultar el mensaje por defecto */
+    }
+}
