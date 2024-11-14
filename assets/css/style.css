@@ -5,7 +5,7 @@ body {
 
 /* Navbar personalizada */
 .navbar-custom {
-    background: #FF7F50;
+    background: #55AD9B;
     color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
@@ -25,8 +25,8 @@ body {
 
 /* Botón en la navbar */
 .navbar-custom .btn-custom {
-    background-color: #333333;
-    color: #f0c36f;
+    background-color: #4614C7;
+    color: #fff;
     border: none;
     padding: 8px 16px;
     border-radius: 5px;
@@ -36,13 +36,13 @@ body {
 }
 
 .navbar-custom .btn-custom:hover {
-    background-color: #555555;
+    background-color: #330D97;
     transform: scale(1.05); /* Ligeramente más grande al hacer hover */
-    color: #FFA500;
+    color: #fffcf7;
 }
 
 .navbar-custom .btn-custom:active {
-    background-color: #444444;
+    background-color: #7C58DA;
     transform: scale(1); /* Retorna a su tamaño original */
 }
 
@@ -50,30 +50,6 @@ body {
 .navbar-scroll {
     background-color: #cc8400; /* Tono más oscuro */
     transition: background-color 0.3s ease;
-}
-
-/* Botón general con efecto de fondo degradado animado */
-.btn-custom {
-    background: linear-gradient(90deg, #333333, #555555);
-    background-size: 200% 200%;
-    animation: gradientShift 3s ease infinite;
-    color: #FFA500;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-custom:hover {
-    background-color: #555555;
-    transform: scale(1.05); /* Ligeramente más grande al hacer hover */
-}
-
-.btn-custom:active {
-    background-color: #444444;
-    transform: scale(1); /* Retorna a su tamaño original */
 }
 
 /* Animación del fondo degradado */
@@ -104,12 +80,15 @@ body {
 
 /* Estilo de "Glassmorphism" para el modal */
 .modal-content {
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(10px);
     border-radius: 10px;
 }
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.9)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+.card{
+    background: #F2F3F4;
 }
 
 @media (max-width: 768px) {
