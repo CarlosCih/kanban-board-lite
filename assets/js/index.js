@@ -72,7 +72,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function accessBoard(boardId) {
-        console.log("Accediendo al tablero con ID:", boardId);
+        // Redirige a la vista kanban.php
+        window.location.href = "./pages/kanban.php";
     }
 
     boardForm.addEventListener("submit", function(e) {

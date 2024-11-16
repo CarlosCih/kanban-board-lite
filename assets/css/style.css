@@ -87,12 +87,12 @@ body {
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.9)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
-.card{
+.card {
     background: #F2F3F4;
 }
 
+/* Responsive design */
 @media (max-width: 768px) {
-    
     .navbar-brand {
         font-size: 1.2em; /* Reducir el tamaño del logo o título */
     }
@@ -117,5 +117,75 @@ body {
     
     #emptyState {
         display: none; /* Ocultar el mensaje por defecto */
+    }
+}
+/* Fondo degradado ya está definido en tu archivo custom.css */
+
+/* Estilo del tablero Kanban */
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.kanban-board {
+    margin-top: 15px; /* Espacio entre el navbar y el tablero */
+
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+/* Estilo de cada columna */
+.kanban-column {
+    flex: 1;
+    background-color: #ece4e4;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 400px;
+}
+
+/* Encabezados personalizados para las columnas */
+.kanban-header {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 3px;
+    width: 100%;
+}
+
+/* Colores personalizados por columna */
+.kanban-column:nth-child(2) .kanban-header {
+    background-color: #6f42c1;
+}
+
+.kanban-column:nth-child(3) .kanban-header {
+    background-color: #ffc107;
+    color: black;
+}
+
+.kanban-column:nth-child(4) .kanban-header {
+    background-color: #28a745;
+}
+
+.kanban-column:nth-child(5) .kanban-header {
+    background-color: #e83e8c;
+}
+
+/* Responsive para columnas */
+@media (max-width: 768px) {
+    .kanban-board {
+        flex-direction: column;
+    }
+    .kanban-column {
+        width: 100%;
     }
 }
