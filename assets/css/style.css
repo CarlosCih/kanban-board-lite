@@ -122,7 +122,7 @@ body {
 /* Fondo degradado ya está definido en tu archivo custom.css */
 
 /* Estilo del tablero Kanban */
-.container {
+.kanban .container {
     display: flex;
     justify-content: center;
 }

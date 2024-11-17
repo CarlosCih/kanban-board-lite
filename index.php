@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -22,18 +22,18 @@
 
     <!-- Registrar el Service Worker -->
     <script>
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", () => {
-                navigator.serviceWorker
-                    .register("serviceworker.js")
-                    .then((registration) => {
-                        console.log("Service Worker registrado con éxito:", registration);
-                    })
-                    .catch((error) => {
-                        console.error("Error al registrar el Service Worker:", error);
-                    });
-            });
-        }
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker
+                .register("serviceworker.js")
+                .then((registration) => {
+                    console.log("Service Worker registrado con éxito:", registration);
+                })
+                .catch((error) => {
+                    console.error("Error al registrar el Service Worker:", error);
+                });
+        });
+    }
     </script>
 </head>
 
@@ -55,7 +55,8 @@
             <div id="emptyState" class="col-12 text-center my-5" style="display: none;">
                 <h3>No tienes tableros aún</h3>
                 <p class="text-muted">Crea tu primer tablero para empezar a organizar tus tareas</p>
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newBoardModal">Crear tu primer tablero</button>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newBoardModal">Crear tu primer
+                    tablero</button>
             </div>
         </div>
     </main>
@@ -72,11 +73,13 @@
                     <form id="newBoardForm">
                         <div class="form-group">
                             <label for="boardName">Nombre del Tablero</label>
-                            <input type="text" class="form-control" id="boardName" placeholder="Ingresa el nombre del tablero" required>
+                            <input type="text" class="form-control" id="boardName"
+                                placeholder="Ingresa el nombre del tablero" required>
                         </div>
                         <div class="form-group mt-3">
                             <label for="boardDescription">Descripción del Tablero</label>
-                            <textarea class="form-control" id="boardDescription" placeholder="Agrega una breve descripción" rows="2"></textarea>
+                            <textarea class="form-control" id="boardDescription"
+                                placeholder="Agrega una breve descripción" rows="2"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Guardar</button>
                     </form>
