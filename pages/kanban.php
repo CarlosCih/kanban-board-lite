@@ -63,16 +63,26 @@
     <?php include '../includes/php/footer.php'; ?>
 
     <script>
+        const obtenerBoardId = () => {
+            const params = new URLSearchParams(window.location.search);
+            return params.get("boardId");
+        };
         // Cargar tareas existentes desde localStorage
         const cargarTareas = () => {
-            const columnas = ["tareasPendientes", "tareasEnProceso", "tareasPospuestas", "tareasFinalizadas", "tareasExtras"];
+            const boardId = obtenerBoardId();
+            if (!boardId) {
+                alert("No se encontró el ID del tablero.");
+                return;
+            }
 
+            const columnas = ["tareasPendientes", "tareasEnProceso", "tareasPospuestas", "tareasFinalizadas", "tareasExtras"];
             columnas.forEach((columnaId) => {
                 const contenedor = document.getElementById(columnaId);
                 const encabezado = contenedor.querySelector(".kanban-header");
-                const tareas = JSON.parse(localStorage.getItem(columnaId)) || [];
 
-                
+                // Las tareas ahora están vinculadas al boardId
+                const tareas = JSON.parse(localStorage.getItem(`${boardId}-${columnaId}`)) || [];
+
                 contenedor.innerHTML = "";
                 contenedor.appendChild(encabezado);
 
@@ -82,9 +92,11 @@
                     tareaElemento.textContent = tarea;
                     tareaElemento.draggable = true;
 
-                    // evento Arrastrar
                     tareaElemento.ondragstart = (event) => {
-                        event.dataTransfer.setData("text", JSON.stringify({ tarea, origen: columnaId }));
+                        event.dataTransfer.setData("text", JSON.stringify({
+                            tarea,
+                            origen: `${boardId}-${columnaId}`
+                        }));
                     };
 
                     contenedor.appendChild(tareaElemento);
@@ -92,13 +104,16 @@
             });
         };
 
-      
+
         const agregarTarea = () => {
             const nuevaTarea = prompt("Ingresa la descripción de la nueva tarea:");
             if (nuevaTarea) {
-                const tareasPendientes = JSON.parse(localStorage.getItem("tareasPendientes")) || [];
+                const boardId = obtenerBoardId();
+                if (!boardId) return;
+
+                const tareasPendientes = JSON.parse(localStorage.getItem(`${boardId}-tareasPendientes`)) || [];
                 tareasPendientes.push(nuevaTarea);
-                localStorage.setItem("tareasPendientes", JSON.stringify(tareasPendientes));
+                localStorage.setItem(`${boardId}-tareasPendientes`, JSON.stringify(tareasPendientes));
                 cargarTareas(); // Actualizar vista
             }
         };
@@ -119,24 +134,30 @@
             event.preventDefault();
             event.currentTarget.classList.remove("over");
 
-            const { tarea, origen } = JSON.parse(event.dataTransfer.getData("text"));
+            const boardId = obtenerBoardId();
+            if (!boardId) return;
+
+            const {
+                tarea,
+                origen
+            } = JSON.parse(event.dataTransfer.getData("text"));
             const destinoId = event.currentTarget.id;
 
-            // Quitar de tarjeta 
+            // Remover tarea del origen
             const tareasOrigen = JSON.parse(localStorage.getItem(origen)) || [];
             const index = tareasOrigen.indexOf(tarea);
             if (index > -1) tareasOrigen.splice(index, 1);
             localStorage.setItem(origen, JSON.stringify(tareasOrigen));
 
-            // Agregar a la tarjeta nueva
-            const tareasDestino = JSON.parse(localStorage.getItem(destinoId)) || [];
+            // Agregar tarea al destino
+            const tareasDestino = JSON.parse(localStorage.getItem(`${boardId}-${destinoId}`)) || [];
             tareasDestino.push(tarea);
-            localStorage.setItem(destinoId, JSON.stringify(tareasDestino));
+            localStorage.setItem(`${boardId}-${destinoId}`, JSON.stringify(tareasDestino));
 
             cargarTareas(); // Actualizar vista
         };
 
-        
+
         document.getElementById("btnAgregarTarea").addEventListener("click", agregarTarea);
 
         // Cargar tareas al inicio

@@ -2,11 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Meta para dispositivos móviles -->
+    <meta name="theme-color" content="#007bff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Tableros PWA">
+
+    <!-- Íconos para iOS -->
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+
+    <!-- Registrar el Service Worker -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker
+                    .register("serviceworker.js")
+                    .then((registration) => {
+                        console.log("Service Worker registrado con éxito:", registration);
+                    })
+                    .catch((error) => {
+                        console.error("Error al registrar el Service Worker:", error);
+                    });
+            });
+        }
+    </script>
 </head>
 
 <body>

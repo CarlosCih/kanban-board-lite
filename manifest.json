@@ -1,0 +1,21 @@
+{
+    "name": "Kanban PWA",
+    "short_name": "Kanban",
+    "start_url": "./index.php",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#007bff",
+    "description": "Una aplicación Kanban para gestionar tareas",
+    "icons": [
+        {
+            "src": "./assets/icons/notas-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./assets/images/orilla.jpg",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
