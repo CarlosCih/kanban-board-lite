@@ -45,7 +45,7 @@
     <!-- Encabezado de la Página -->
     <header class="container my-4">
         <div class="d-flex justify-content-between align-items-center">
-            <h1 class="text-primary">Mis Tableros</h1>
+            <h1 class="">Mis Tableros</h1>
         </div>
     </header>
 
