@@ -64,7 +64,7 @@
     <script>
         const obtenerBoardId = () => {
             const params = new URLSearchParams(window.location.search);
-            return params.get("boardId");
+            return params.get("boardId") || "defaultBoardId";
         };
         // Cargar tareas existentes desde localStorage
         const cargarTareas = () => {
