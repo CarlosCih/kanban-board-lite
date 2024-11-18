@@ -1,6 +1,14 @@
-/* Fondo degradado claro para el cuerpo */
+/* Fondo degradado claro (por defecto) */
 body {
     background: linear-gradient(to right, #f8f9fa, #ffffff);
+    color: #000000;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Fondo degradado oscuro */
+body.dark-theme {
+    background: linear-gradient(to right, #2c3e50, #34495e);
+    color: #ffffff;
 }
 
 /* Navbar personalizada */
@@ -8,6 +16,11 @@ body {
     background: #55AD9B;
     color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-custom.dark-theme {
+    background: #2c3e50;
 }
 
 /* Estilos de enlaces en la navbar */
@@ -23,6 +36,16 @@ body {
     color: #333333; /* Color al pasar el mouse (gris oscuro) */
 }
 
+.navbar-custom.dark-theme .navbar-brand,
+.navbar-custom.dark-theme .nav-link {
+    color: #bbbbbb;
+}
+
+.navbar-custom.dark-theme .navbar-brand:hover,
+.navbar-custom.dark-theme .nav-link:hover {
+    color: #ffffff;
+}
+
 /* Botón en la navbar */
 .navbar-custom .btn-custom {
     background-color: #4614C7;
@@ -32,7 +55,7 @@ body {
     border-radius: 5px;
     font-weight: bold;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
 }
 
 .navbar-custom .btn-custom:hover {
@@ -41,112 +64,28 @@ body {
     color: #fffcf7;
 }
 
-.navbar-custom .btn-custom:active {
-    background-color: #7C58DA;
-    transform: scale(1); /* Retorna a su tamaño original */
+.navbar-custom.dark-theme .btn-custom {
+    background-color: #3a3a3a;
+    color: #ffffff;
 }
 
-/* Navbar al hacer scroll */
-.navbar-scroll {
-    background-color: #cc8400; /* Tono más oscuro */
-    transition: background-color 0.3s ease;
+.navbar-custom.dark-theme .btn-custom:hover {
+    background-color: #555555;
+    color: #cccccc;
 }
 
-/* Animación del fondo degradado */
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 100% 50%;
-    }
-}
-
-/* Bordes redondeados en tarjetas y modales */
-.card,
-.modal-content {
-    border-radius: 8px;
-}
-
-/* Efecto de animación de entrada para el modal */
-.modal.fade .modal-dialog {
-    transform: translateY(-100px);
-    transition: transform 0.3s ease-out;
-}
-
-.modal.show .modal-dialog {
-    transform: translateY(0);
-}
-
-/* Estilo de "Glassmorphism" para el modal */
-.modal-content {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-}
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.9)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
-.card {
-    background: #F2F3F4;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .navbar-brand {
-        font-size: 1.2em; /* Reducir el tamaño del logo o título */
-    }
-    .navbar {
-        padding: 10px; /* Reducir el padding de la navbar */
-    }
-    .navbar-collapse {
-        text-align: center; /* Centrar los elementos dentro del menú desplegable */
-    }
-    .navbar-nav {
-        flex-direction: column; /* Colocar los enlaces en columna */
-    }
-    .navbar-nav .nav-item {
-        margin: 5px 0; /* Añadir espaciado entre los enlaces */
-    }
-    .btn-custom {
-        padding: 5px 10px; /* Reducir el tamaño del botón en móviles */
-        font-size: 0.9em;  /* Tamaño de fuente más pequeño */
-        width: 50%; /* Hacer el botón de ancho completo en móviles */
-        margin-top: 10px;
-    }
-    
-    #emptyState {
-        display: none; /* Ocultar el mensaje por defecto */
-    }
-}
 /* Fondo degradado ya está definido en tu archivo custom.css */
 
 /* Estilo del tablero Kanban */
-.kanban .container {
-    display: flex;
-    justify-content: center;
-}
-
-.kanban-board {
-    margin-top: 15px; /* Espacio entre el navbar y el tablero */
-
-    display: flex;
-    width: 100%;
-    gap: 10px;
-}
-
-/* Estilo de cada columna */
 .kanban-column {
-    flex: 1;
     background-color: #ece4e4;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 400px;
+    color: #000000;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-theme .kanban-column {
+    background-color: #3a3a3a;
+    color: #000000;
 }
 
 /* Encabezados personalizados para las columnas */
@@ -160,6 +99,11 @@ body {
     color: white;
     border-radius: 3px;
     width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-theme .kanban-header {
+    background-color: #1a73e8;
 }
 
 /* Colores personalizados por columna */
@@ -167,25 +111,44 @@ body {
     background-color: #6f42c1;
 }
 
+body.dark-theme .kanban-column:nth-child(2) .kanban-header {
+    background-color: #4a2b7f;
+}
+
 .kanban-column:nth-child(3) .kanban-header {
     background-color: #ffc107;
     color: black;
+}
+
+body.dark-theme .kanban-column:nth-child(3) .kanban-header {
+    background-color: #b38b00;
+    color: white;
 }
 
 .kanban-column:nth-child(4) .kanban-header {
     background-color: #28a745;
 }
 
+body.dark-theme .kanban-column:nth-child(4) .kanban-header {
+    background-color: #1e7a33;
+}
+
 .kanban-column:nth-child(5) .kanban-header {
     background-color: #e83e8c;
 }
 
-/* Responsive para columnas */
+body.dark-theme .kanban-column:nth-child(5) .kanban-header {
+    background-color: #b02c6b;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
-    .kanban-board {
-        flex-direction: column;
-    }
-    .kanban-column {
-        width: 100%;
-    }
+    /* Ajustes para el tema oscuro se mantienen igual */
+}
+
+.aggTarea{
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    padding: 15px 30px;;
 }

@@ -120,4 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     loadBoards();
+    
+
+    
 });

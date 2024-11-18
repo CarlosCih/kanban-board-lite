@@ -26,8 +26,8 @@
 <body>
     <?php include '../includes/php/header.php'; ?>
 
-    <div class="container">
-        <button id="btnAgregarTarea" style="font-size: 24px; padding: 15px 30px;" class="btn btn-secondary mt-2">Agregar Tarea</button>
+    <div class="aggTarea">
+        <button id="btnAgregarTarea" style="width: 250px;" class="btn btn-secondary mt-2">Agregar Tarea</button>
     </div>
 
     <div class="container">
