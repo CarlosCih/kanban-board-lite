@@ -89,6 +89,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-danger" id="btnEliminarTarea" style="display: none;">Eliminar Tarea</button>
                     <button type="button" class="btn btn-primary" id="btnGuardarTarea">Guardar Tarea</button>
                 </div>
             </div>
@@ -120,6 +121,10 @@
 
                     // Mostrar modal en modo de solo lectura
                     tareaElemento.onclick = () => {
+                        tareaSeleccionada = {
+                            descripcion: tarea.descripcion,
+                            columna: `${boardId}-${columnaId}`
+                        };
                         document.getElementById("descripcionTarea").value = tarea.descripcion;
                         document.getElementById("detallesTarea").value = tarea.detalles;
 
@@ -127,13 +132,55 @@
                         document.getElementById("descripcionTarea").disabled = true;
                         document.getElementById("detallesTarea").disabled = true;
 
-                        // Ocultar botón de guardar
+                        // Mostrar botón de eliminar y ocultar botón de guardar
                         document.getElementById("btnGuardarTarea").style.display = "none";
+                        document.getElementById("btnEliminarTarea").style.display = "block";
 
                         const modal = new bootstrap.Modal(document.getElementById("modalAgregarTarea"));
                         modal.show();
                     };
 
+                    // Evento para el botón "Eliminar"
+                    document.getElementById("btnEliminarTarea").addEventListener("click", () => {
+                        if (tareaSeleccionada) {
+                            const tareas = JSON.parse(localStorage.getItem(tareaSeleccionada.columna)) || [];
+                            const index = tareas.findIndex(t => t.descripcion === tareaSeleccionada.descripcion);
+                            if (index > -1) {
+                                tareas.splice(index, 1);
+                                localStorage.setItem(tareaSeleccionada.columna, JSON.stringify(tareas));
+                            }
+                        }
+
+                        tareaSeleccionada = null;
+                        cargarTareas();
+
+                        const modal = bootstrap.Modal.getInstance(document.getElementById("modalAgregarTarea"));
+                        modal.hide();
+                    });
+
+                    // Mostrar el modal para agregar nueva tarea
+                    document.getElementById("btnAgregarTarea").addEventListener("click", () => {
+                        tareaSeleccionada = null;
+                        document.getElementById("descripcionTarea").value = "";
+                        document.getElementById("detallesTarea").value = "";
+
+                        // Habilitar campos
+                        document.getElementById("descripcionTarea").disabled = false;
+                        document.getElementById("detallesTarea").disabled = false;
+
+                        // Mostrar botón de guardar y ocultar botón de eliminar
+                        document.getElementById("btnGuardarTarea").style.display = "block";
+                        document.getElementById("btnEliminarTarea").style.display = "none";
+
+                        const modal = new bootstrap.Modal(document.getElementById("modalAgregarTarea"));
+                        modal.show();
+                    });
+
+                    // Al abrir el modal para agregar nueva tarea, oculta el botón "Eliminar"
+                    document.getElementById("btnAgregarTarea").addEventListener("click", () => {
+                        tareaSeleccionada = null;
+                        document.getElementById("btnEliminarTarea").style.display = "none";
+                    });
                     tareaElemento.ondragstart = event => {
                         event.dataTransfer.setData("text", JSON.stringify({
                             descripcion: tarea.descripcion,
@@ -163,7 +210,11 @@
             const data = event.dataTransfer.getData("text");
             if (!data) return;
 
-            const { descripcion, detalles, origen } = JSON.parse(data);
+            const {
+                descripcion,
+                detalles,
+                origen
+            } = JSON.parse(data);
             const boardId = obtenerBoardId();
             const destino = event.currentTarget.id;
 
@@ -173,7 +224,10 @@
             localStorage.setItem(origen, JSON.stringify(tareasOrigen));
 
             const tareasDestino = JSON.parse(localStorage.getItem(`${boardId}-${destino}`)) || [];
-            tareasDestino.push({ descripcion, detalles });
+            tareasDestino.push({
+                descripcion,
+                detalles
+            });
             localStorage.setItem(`${boardId}-${destino}`, JSON.stringify(tareasDestino));
 
             cargarTareas();
@@ -201,7 +255,10 @@
 
             const boardId = obtenerBoardId();
             const tareasPendientes = JSON.parse(localStorage.getItem(`${boardId}-tareasPendientes`)) || [];
-            tareasPendientes.push({ descripcion: descripcionTarea, detalles: detallesTarea });
+            tareasPendientes.push({
+                descripcion: descripcionTarea,
+                detalles: detallesTarea
+            });
             localStorage.setItem(`${boardId}-tareasPendientes`, JSON.stringify(tareasPendientes));
 
             cargarTareas();
