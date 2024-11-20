@@ -1,13 +1,13 @@
-const CACHE_NAME = "kanban-pwa-cache-v3";
+const CACHE_NAME = "kanban-pwa-cache-v2";
 const urlsToCache = [
     "./",
     "./index.php",
-    "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-    "../assets/css/style.css",
-    "../assets/icons/notas-192x192.png",
-    "../assets/images/orilla.jpg",
-    "./pages/kanban.php", // Añadido para almacenar kanban.php
-    "./offline.html" // Página de respaldo para modo offline
+    "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+    "./assets/css/style.css",
+    "./assets/icons/notas-192x192.png",
+    "./assets/images/orilla.jpg",
+    "./pages/kanban.php",
+    "./offline.html" // Página estática para mostrar en modo offline
 ];
 
 // Instalar el Service Worker y cachear recursos iniciales
@@ -24,7 +24,7 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
         fetch(event.request)
             .then((response) => {
-                // Guardar la respuesta en caché
+                // Guardar en caché una copia de recursos dinámicos
                 const responseClone = response.clone();
                 caches.open(CACHE_NAME).then((cache) => {
                     cache.put(event.request, responseClone);
@@ -32,12 +32,14 @@ self.addEventListener("fetch", (event) => {
                 return response;
             })
             .catch(() => {
-                // Si la red no está disponible, servir desde la caché
+                // Si falla la red, servir desde el caché o usar un recurso de fallback
                 return caches.match(event.request).then((cachedResponse) => {
-                    // Si no se encuentra el archivo, mostrar offline.html
-                    return (
-                        cachedResponse || caches.match("./offline.html")
-                    );
+                    if (cachedResponse) {
+                        return cachedResponse;
+                    } else if (event.request.mode === "navigate") {
+                        // Fallback a la página offline para solicitudes de navegación
+                        return caches.match("./offline.html");
+                    }
                 });
             })
     );
